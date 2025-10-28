@@ -113,7 +113,7 @@ export default function MealsPage() {
             <p className="text-muted-foreground text-lg">Tailored nutrition for your goals</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          {/* <div className="grid md:grid-cols-3 gap-6">
             {mealPlans.map((plan) => {
               const Icon = plan.icon
               return (
@@ -147,6 +147,9 @@ export default function MealsPage() {
                 </Card>
               )
             })}
+          </div> */}
+                    <div className="text-green-800 text-center font-extrabold text-5xl md:text-6xl lg:text-7xl text-foreground tracking-tight drop-shadow-lg">
+            Stay Tuned
           </div>
         </div>
       </section>
@@ -154,12 +157,12 @@ export default function MealsPage() {
       {/* Featured Recipes */}
       <section className="py-16 md:py-24 bg-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          {/* <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Featured Recipes</h2>
             <p className="text-muted-foreground text-lg">Delicious and nutritious meals</p>
-          </div>
+          </div> */}
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recipes.map((recipe) => (
               <Card key={recipe.id} className="p-6 hover:shadow-lg transition">
                 <h3 className="text-lg font-bold text-foreground mb-4">{recipe.name}</h3>
@@ -197,7 +200,7 @@ export default function MealsPage() {
                 </Button>
               </Card>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
     </PageLayout>

@@ -27,12 +27,12 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-1 group">
             <div className="w-10 h-10 from-primary via-accent to-primary rounded-xl flex items-center justify-center ">
               <span className="text-primary-foreground font-bold text-lg">
-      <Image
-        src={theme === "light" ? logodark : logolight }
-        alt="Logo picture"
-        width={120} // Next.js requires width
-        height={40} // Next.js requires height
-      />
+                <Image
+                  src={theme === "light" ? logodark : logolight }
+                  alt="Logo picture"
+                  width={120} // Next.js requires width
+                  height={40} // Next.js requires height
+                />
               </span>
             </div>
             <span className="font-bold pt-2 text-xl text-foreground hidden sm:inline bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">

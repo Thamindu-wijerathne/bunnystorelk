@@ -131,8 +131,11 @@ export default function ShopPage() {
     >
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-green-800 text-center font-extrabold text-5xl md:text-6xl lg:text-7xl text-foreground tracking-tight drop-shadow-lg">
+            Stay Tuned
+          </div>
           {/* Filter Section */}
-          <div className="mb-8 flex flex-wrap gap-3">
+          {/* <div className="mb-8 flex flex-wrap gap-3">
             <Button
               variant={selectedCategory === null ? "default" : "outline"}
               onClick={() => setSelectedCategory(null)}
@@ -150,10 +153,10 @@ export default function ShopPage() {
                 {category}
               </Button>
             ))}
-          </div>
+          </div> */}
 
           {/* Products Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
               <Link key={product.id} href={`/shop/${product.id}`}>
                 <Card className="overflow-hidden hover:shadow-lg transition cursor-pointer h-full">
@@ -190,7 +193,7 @@ export default function ShopPage() {
                 </Card>
               </Link>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
     </PageLayout>

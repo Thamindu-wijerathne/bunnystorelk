@@ -34,24 +34,24 @@ const team = [
     bio: "15+ years in wellness industry",
     image: "/professional-man.png",
   },
-  {
-    name: "Sarah Johnson",
-    role: "Head of Nutrition",
-    bio: "Certified nutritionist & dietitian",
-    image: "/professional-woman.png",
-  },
-  {
-    name: "Mike Chen",
-    role: "Wellness Director",
-    bio: "NASM certified trainer",
-    image: "/professional-trainer.jpg",
-  },
-  {
-    name: "Emma Davis",
-    role: "Customer Success",
-    bio: "Dedicated to your goals",
-    image: "/professional-support.jpg",
-  },
+  // {
+  //   name: "Sarah Johnson",
+  //   role: "Head of Nutrition",
+  //   bio: "Certified nutritionist & dietitian",
+  //   image: "/professional-woman.png",
+  // },
+  // {
+  //   name: "Mike Chen",
+  //   role: "Wellness Director",
+  //   bio: "NASM certified trainer",
+  //   image: "/professional-trainer.jpg",
+  // },
+  // {
+  //   name: "Emma Davis",
+  //   role: "Customer Success",
+  //   bio: "Dedicated to your goals",
+  //   image: "/professional-support.jpg",
+  // },
 ]
 
 export default function AboutPage() {

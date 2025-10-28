@@ -114,7 +114,7 @@ export default function ConsultingPage() {
             <p className="text-muted-foreground text-lg">Choose the plan that fits your needs</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* <div className="grid md:grid-cols-3 gap-8">
             {packages.map((pkg, index) => (
               <Card
                 key={index}
@@ -149,7 +149,11 @@ export default function ConsultingPage() {
                 </Link>
               </Card>
             ))}
+          </div> */}
+          <div className="text-green-800 text-center font-extrabold text-5xl md:text-6xl lg:text-7xl text-foreground tracking-tight drop-shadow-lg">
+            Stay Tuned
           </div>
+
         </div>
       </section>
 
