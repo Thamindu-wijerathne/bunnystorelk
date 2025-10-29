@@ -50,7 +50,7 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-8">
+            {/* <div className="grid grid-cols-3 gap-4 pt-8">
               {[
                 { value: "10K+", label: "Happy Customers" },
                 { value: "500+", label: "Products" },
@@ -63,7 +63,7 @@ export default function Hero() {
                   <p className="text-sm text-muted-foreground">{stat.label}</p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Right Image */}
