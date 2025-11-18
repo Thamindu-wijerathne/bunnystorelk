@@ -12,7 +12,22 @@ export const metadata: Metadata = {
   title: "BunnyStore - Premium Fitness & Wellness",
   description: "Shop premium supplements, get personalized meal plans, and expert fitness consulting",
   generator: "v0.app",
+    icons: {
+      icon: "/favicon.ico",
+      shortcut: "/favicon.ico",
+      apple: "/apple-icon.png",
+  },
 }
+
+
+// export const metadata = {
+//   title: "My App",
+//   icons: {
+//     icon: "/my-favicon.ico",
+//     shortcut: "/my-favicon.ico",
+//     apple: "/apple-icon.png",
+//   },
+// };
 
 export default function RootLayout({
   children,
