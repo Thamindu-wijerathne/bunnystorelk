@@ -1,7 +1,15 @@
+"use client";
+
+
 import Link from "next/link"
 import { Mail, Phone, MapPin } from "lucide-react"
+import { useTheme } from "next-themes";
+import Image from "next/image"
+import logodark from "@/public/Logo-dark.png"
+import logolight from "@/public/Logo-light.png"
 
 export default function Footer() {
+  const { theme } = useTheme();
   return (
     <footer className="bg-foreground text-background py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,8 +17,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">B</span>
+              <div className="w-12 h-12  flex items-center justify-center">
+                <Image
+                  src={theme === "light" ? logolight : logodark }
+                  alt="Logo picture"
+                  width={150} // Next.js requires width
+                  height={70} // Next.js requires height
+                />
               </div>
               <span className="font-bold text-lg">BunnyStore</span>
             </div>

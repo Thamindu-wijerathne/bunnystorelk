@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "./theme-toggle"
 import { useAuth } from "@/lib/auth-context"
 import { useTheme } from "./theme-provider"
-
 import Image from "next/image"
 import logodark from "@/public/Logo-dark.png"
 import logolight from "@/public/Logo-light.png"
