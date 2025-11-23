@@ -35,7 +35,7 @@ export default function Header() {
                 />
               </span>
             </div>
-            <span className="font-bold pt-2 text-xl text-foreground hidden sm:inline bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="font-bold pt-2 text-xl text-foreground sm:inline bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               BunnyStore
             </span>
           </Link>
