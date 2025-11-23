@@ -28,12 +28,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/shop?category=gym-gear" className="hover:text-primary transition">
-                  Gym Gear
+                  Gym Wear
                 </Link>
               </li>
               <li>
                 <Link href="/shop?category=perfume" className="hover:text-primary transition">
-                  Perfume
+                  Bunny Fragrances
                 </Link>
               </li>
             </ul>
@@ -79,7 +79,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                <span>New York, USA</span>
+                <span>BunnyStore, Mulgampola, Kandy</span>
               </li>
             </ul>
           </div>
