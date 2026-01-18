@@ -58,7 +58,7 @@ export default function AboutPage() {
   return (
     <PageLayout title="About BunnyStore" description="Your trusted partner in wellness and lifestyle">
       {/* Story Section */}
-      <section className="py-16 md:py-24 bg-background">
+      {/* <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Our Story</h2>
@@ -73,7 +73,7 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Values Section */}
       <section className="py-16 md:py-24 bg-primary/5">
@@ -102,7 +102,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 md:py-24 bg-background">
+      {/* <section className="py-16 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Meet Our Team</h2>
@@ -128,7 +128,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-primary/5">
@@ -137,7 +137,7 @@ export default function AboutPage() {
           <p className="text-lg text-muted-foreground mb-8">
             Start your wellness journey today and become part of the BunnyStore family.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/shop">
               <Button size="lg" className="bg-primary hover:bg-primary/90">
                 Shop Now
@@ -148,7 +148,7 @@ export default function AboutPage() {
                 Get Consulting
               </Button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
     </PageLayout>
