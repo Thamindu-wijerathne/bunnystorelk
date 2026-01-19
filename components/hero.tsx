@@ -10,6 +10,8 @@ export default function Hero() {
   const [textOpacity, setTextOpacity] = useState(0)
   const [textTranslate, setTextTranslate] = useState(50)
   const totalFrames = 59
+  const [isLoaded, setIsLoaded] = useState(false)
+
   let ticking = false
 
 
@@ -52,14 +54,43 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  useEffect(() => {
-    const preloadCount = 15 // preload first 15 frames only
 
-    for (let i = 1; i <= preloadCount; i++) {
-      const img = new Image()
-      img.src = `/homepagevideo/ezgif-frame-${pad(i)}.jpg`
+  // load all images before page opens
+  useEffect(() => {
+    const preloadImages = async () => {
+      const promises = []
+
+      for (let i = 1; i <= totalFrames; i++) {
+        promises.push(
+          new Promise((resolve) => {
+            const img = new Image()
+            img.src = `/homepagevideo/ezgif-frame-${pad(i)}.jpg`
+            img.onload = resolve
+          })
+        )
+      }
+
+      // Minimum 2s loader time
+      await Promise.all([
+        Promise.all(promises),
+        new Promise((res) => setTimeout(res, 2000)),
+      ])
+
+      setIsLoaded(true)
     }
+
+    preloadImages()
   }, [])
+
+  if (!isLoaded) {
+    return (
+      <div className="w-screen h-screen flex items-center justify-center bg-black text-white">
+        Loading experience...
+      </div>
+    )
+  }
+
+  
 
 
 
