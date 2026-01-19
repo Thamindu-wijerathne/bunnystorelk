@@ -9,7 +9,7 @@ export default function Hero() {
   const [frame, setFrame] = useState(1)
   const [textOpacity, setTextOpacity] = useState(0)
   const [textTranslate, setTextTranslate] = useState(50)
-  const totalFrames = 89
+  const totalFrames = 59
 
   const pad = (num: number) => num.toString().padStart(3, "0")
 
