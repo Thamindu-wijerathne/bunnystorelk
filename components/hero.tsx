@@ -9,7 +9,7 @@ export default function Hero() {
   const [frame, setFrame] = useState(1)
   const totalFrames = 89
 
-  const pad = (num) => num.toString().padStart(3, "0")
+  const pad = (num : any) => num.toString().padStart(3, "0")
 
   useEffect(() => {
     const handleScroll = () => {
