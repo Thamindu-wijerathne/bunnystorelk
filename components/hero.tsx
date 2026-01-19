@@ -10,33 +10,58 @@ export default function Hero() {
   const [textOpacity, setTextOpacity] = useState(0)
   const [textTranslate, setTextTranslate] = useState(50)
   const totalFrames = 59
+  let ticking = false
+
 
   const pad = (num: number) => num.toString().padStart(3, "0")
 
   useEffect(() => {
+    let ticking = false
+
     const handleScroll = () => {
       if (!containerRef.current) return
 
-      const section = containerRef.current
-      const scrollTop = window.scrollY - section.offsetTop
-      const scrollHeight = section.offsetHeight - window.innerHeight
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const section = containerRef.current!
+          const scrollTop = window.scrollY - section.offsetTop
+          const scrollHeight = section.offsetHeight - window.innerHeight
 
-      const scrollProgress = Math.min(Math.max(scrollTop / scrollHeight, 0), 1)
+          const scrollProgress = Math.min(
+            Math.max(scrollTop / scrollHeight, 0),
+            1
+          )
 
-      // Image frame
-      const currentFrame = Math.floor(scrollProgress * (totalFrames - 1)) + 1
-      setFrame(currentFrame)
+          // Image frame
+          const currentFrame =
+            Math.floor(scrollProgress * (totalFrames - 1)) + 1
+          setFrame(currentFrame)
 
-      // Text animation: fade in in first 50% scroll
-      const opacity = Math.min(scrollProgress * 2, 1)
-      const translate = 50 - scrollProgress * 50
-      setTextOpacity(opacity)
-      setTextTranslate(translate)
+          // Text animation
+          setTextOpacity(Math.min(scrollProgress * 2, 1))
+          setTextTranslate(50 - scrollProgress * 50)
+
+          ticking = false
+        })
+
+        ticking = true
+      }
     }
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    const preloadCount = 15 // preload first 15 frames only
+
+    for (let i = 1; i <= preloadCount; i++) {
+      const img = new Image()
+      img.src = `/homepagevideo/ezgif-frame-${pad(i)}.jpg`
+    }
+  }, [])
+
+
 
   return (
     <section
