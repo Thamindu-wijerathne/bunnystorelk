@@ -5,7 +5,7 @@ import Link from "next/link"
 import React, { useEffect, useRef, useState } from "react"
 
 export default function Hero() {
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLElement | null>(null) // ✅ fix here
   const [frame, setFrame] = useState(1)
   const totalFrames = 89
 
