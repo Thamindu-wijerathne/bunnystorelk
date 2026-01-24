@@ -248,7 +248,7 @@ export default function Hero() {
 
         {/* Scroll Indicator */}
         <div
-          className={`absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-white transition-opacity duration-500 pointer-events-none ${showScrollIndicator ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute top-25 left-1/2 -translate-x-1/2 flex flex-col items-center text-white transition-opacity duration-500 pointer-events-none ${showScrollIndicator ? 'opacity-100' : 'opacity-0'}`}
         >
           <span className="text-sm font-medium mb-2 uppercase tracking-widest text-primary">Scroll Down</span>
           <ChevronDown className="w-8 h-8 animate-bounce text-primary" />
