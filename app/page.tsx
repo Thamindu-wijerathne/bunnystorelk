@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
       <Hero />
       {/* <ProductCategories /> */}
-      {/* <FeaturedProducts /> */}
+      <FeaturedProducts />
       <ConsultingSection />
       <Footer />
     </main>
