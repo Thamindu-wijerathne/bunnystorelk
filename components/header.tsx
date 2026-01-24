@@ -27,16 +27,16 @@ export default function Header() {
             <div className="w-10 h-10 from-primary via-accent to-primary rounded-xl flex items-center justify-center ">
               <span className="text-primary-foreground font-bold text-lg">
                 <Image
-                  src={theme === "light" ? logodark : logolight }
+                  src={theme === "light" ? logodark : logolight}
                   alt="Logo picture"
                   width={120} // Next.js requires width
                   height={40} // Next.js requires height
                 />
               </span>
             </div>
-            <span className="font-bold pt-2 text-xl text-foreground sm:inline bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            {/* <span className="font-bold pt-2 text-xl text-foreground sm:inline bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               BunnyStore.LK
-            </span>
+            </span> */}
           </Link>
 
           {/* Desktop Navigation */}
@@ -83,10 +83,10 @@ export default function Header() {
                   <LogOut className="w-5 h-5" />
                 </Button>
               </div>
-            ) 
-            : (
-              <div className="hidden sm:flex gap-2">
-                {/* <Link href="/login">
+            )
+              : (
+                <div className="hidden sm:flex gap-2">
+                  {/* <Link href="/login">
                   <Button variant="ghost" size="sm" className="hover:bg-primary/10">
                     Login
                   </Button>
@@ -99,8 +99,8 @@ export default function Header() {
                     Sign Up
                   </Button>
                 </Link> */}
-              </div>
-            )}
+                </div>
+              )}
 
             {/* Mobile Menu Button */}
             <button
