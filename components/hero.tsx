@@ -11,6 +11,7 @@ export default function Hero() {
   const [textOpacity, setTextOpacity] = useState(0)
   const [textTranslate, setTextTranslate] = useState(50)
   const totalFrames = 89
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const pad = (num: number) => num.toString().padStart(3, "0")
 
   useEffect(() => {
@@ -21,6 +22,12 @@ export default function Hero() {
       const scrollTop = window.scrollY - section.offsetTop
       const scrollHeight = section.offsetHeight - window.innerHeight
       const scrollProgress = Math.min(Math.max(scrollTop / scrollHeight, 0), 1)
+
+      if (window.scrollY > 50) {
+        setShowScrollIndicator(false)
+      } else {
+        setShowScrollIndicator(true)
+      }
 
       // Image frame
       const currentFrame = Math.floor(scrollProgress * (totalFrames - 1)) + 1
@@ -91,7 +98,7 @@ export default function Hero() {
 
         {/* Scroll Indicator */}
         <div
-          className={`absolute top-25 left-1/2 -translate-x-1/2 flex flex-col items-center text-white transition-opacity duration-500 pointer-events-none ${showScrollIndicator ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-white transition-opacity duration-500 pointer-events-none ${showScrollIndicator ? 'opacity-100' : 'opacity-0'}`}
         >
           <span className="text-sm font-medium mb-2 uppercase tracking-widest text-primary">Scroll Down</span>
           <ChevronDown className="w-8 h-8 animate-bounce text-primary" />
