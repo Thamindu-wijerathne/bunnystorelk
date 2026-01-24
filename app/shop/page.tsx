@@ -8,134 +8,285 @@ import { Star, ShoppingCart, Filter } from "lucide-react"
 import Link from "next/link"
 
 const allProducts = [
+  // Pre Workouts
   {
     id: 1,
-    name: "Premium Creatine Monohydrate",
-    category: "Supplements",
-    price: 29.99,
+    name: "Pump 3G",
+    category: "Pre Workouts",
+    price: 7500,
     rating: 4.8,
-    reviews: 245,
-    image: "/creatine-powder.png",
+    reviews: 120,
+    image: "/placeholder.svg",
   },
   {
     id: 2,
-    name: "Advanced Fat Burner",
-    category: "Supplements",
-    price: 39.99,
-    rating: 4.6,
-    reviews: 189,
-    image: "/fat-burner-supplement-bottle.jpg",
+    name: "Reckful",
+    category: "Pre Workouts",
+    price: 7500,
+    rating: 4.7,
+    reviews: 85,
+    image: "/placeholder.svg",
   },
   {
     id: 3,
-    name: "Whey Protein Isolate",
-    category: "Supplements",
-    price: 49.99,
-    rating: 4.9,
-    reviews: 412,
-    image: "/protein-powder.jpg",
+    name: "Caffeine Tabs",
+    category: "Pre Workouts",
+    price: 4500,
+    rating: 4.5,
+    reviews: 60,
+    image: "/placeholder.svg",
   },
+
+  // Creatine
   {
     id: 4,
-    name: "BCAA Complex",
-    category: "Supplements",
-    price: 34.99,
-    rating: 4.7,
-    reviews: 178,
-    image: "/bcaa-supplement.jpg",
+    name: "Cellucor Creatine",
+    category: "Creatine",
+    price: 5500,
+    rating: 4.9,
+    reviews: 200,
+    image: "/placeholder.svg",
   },
   {
     id: 5,
-    name: "Professional Dumbbell Set",
-    category: "Gym Gear",
-    price: 199.99,
-    rating: 4.7,
-    reviews: 312,
-    image: "/professional-dumbbells-set.jpg",
+    name: "Nutriversum",
+    category: "Creatine",
+    price: 4500,
+    rating: 4.6,
+    reviews: 150,
+    image: "/placeholder.svg",
   },
   {
     id: 6,
-    name: "Adjustable Weight Bench",
-    category: "Gym Gear",
-    price: 149.99,
+    name: "Raw Creatine",
+    category: "Creatine",
+    price: 5000,
     rating: 4.8,
-    reviews: 267,
-    image: "/weight-bench.jpg",
+    reviews: 180,
+    image: "/placeholder.svg",
   },
   {
     id: 7,
-    name: "Resistance Band Set",
-    category: "Gym Gear",
-    price: 24.99,
+    name: "Enhance",
+    category: "Creatine",
+    price: 4500,
     rating: 4.5,
-    reviews: 189,
-    image: "/resistance-bands.jpg",
+    reviews: 90,
+    image: "/placeholder.svg",
   },
   {
     id: 8,
-    name: "Yoga Mat Premium",
-    category: "Gym Gear",
-    price: 39.99,
-    rating: 4.6,
-    reviews: 234,
-    image: "/yoga-mat.jpg",
+    name: "Applied FLV",
+    category: "Creatine",
+    price: 6000,
+    rating: 4.7,
+    reviews: 110,
+    image: "/placeholder.svg",
   },
   {
     id: 9,
-    name: "Luxury Gym Perfume",
-    category: "Perfume",
-    price: 49.99,
-    rating: 4.9,
-    reviews: 156,
-    image: "/luxury-perfume-bottle.png",
+    name: "Core Champs",
+    category: "Creatine",
+    price: 5000,
+    rating: 4.6,
+    reviews: 75,
+    image: "/placeholder.svg",
   },
   {
     id: 10,
-    name: "Fresh Citrus Cologne",
-    category: "Perfume",
-    price: 44.99,
+    name: "VX Creatine",
+    category: "Creatine",
+    price: 5500,
     rating: 4.7,
-    reviews: 123,
-    image: "/citrus-cologne.jpg",
+    reviews: 95,
+    image: "/placeholder.svg",
   },
   {
     id: 11,
-    name: "Energizing Body Spray",
-    category: "Perfume",
-    price: 29.99,
-    rating: 4.4,
-    reviews: 98,
-    image: "/body-spray.jpg",
+    name: "Big Ramy",
+    category: "Creatine",
+    price: 5500,
+    rating: 4.8,
+    reviews: 130,
+    image: "/placeholder.svg",
   },
   {
     id: 12,
-    name: "Premium Deodorant",
-    category: "Perfume",
-    price: 19.99,
+    name: "Galvanize Creatine",
+    category: "Creatine",
+    price: 6000,
+    rating: 4.9,
+    reviews: 160,
+    image: "/placeholder.svg",
+  },
+
+  // Proteins
+  {
+    id: 13,
+    name: "ISO 100",
+    category: "Proteins",
+    price: 33000,
+    rating: 5.0,
+    reviews: 300,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 14,
+    name: "Galvanize Whey",
+    category: "Proteins",
+    price: 22000,
+    rating: 4.7,
+    reviews: 150,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 15,
+    name: "Ultimate Whey",
+    category: "Proteins",
+    price: 23000,
+    rating: 4.8,
+    reviews: 180,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 16,
+    name: "Dennis James",
+    category: "Proteins",
+    price: 22000,
     rating: 4.6,
-    reviews: 267,
-    image: "/deodorant.jpg",
+    reviews: 120,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 17,
+    name: "Gibbon Whey",
+    category: "Proteins",
+    price: 21000,
+    rating: 4.5,
+    reviews: 90,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 18,
+    name: "Applied Critical",
+    category: "Proteins",
+    price: 21500,
+    rating: 4.7,
+    reviews: 110,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 19,
+    name: "Pro Science",
+    category: "Proteins",
+    price: 21500,
+    rating: 4.6,
+    reviews: 100,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 20,
+    name: "Nitro Tech",
+    category: "Proteins",
+    price: 23000,
+    rating: 4.9,
+    reviews: 250,
+    image: "/placeholder.svg",
+  },
+
+  // Mass Gainers
+  {
+    id: 21,
+    name: "Pro Science Mass",
+    category: "Mass gainers",
+    price: 21500,
+    rating: 4.7,
+    reviews: 140,
+    image: "/placeholder.svg",
+  },
+
+  // Others
+  {
+    id: 22,
+    name: "Applied Multivitamin",
+    category: "Others",
+    price: 4500,
+    rating: 4.6,
+    reviews: 80,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 23,
+    name: "Collagen",
+    category: "Others",
+    price: 4500,
+    rating: 4.5,
+    reviews: 60,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 24,
+    name: "Dennis Omega 3",
+    category: "Others",
+    price: 5000,
+    rating: 4.7,
+    reviews: 95,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 25,
+    name: "Xtend BCAA",
+    category: "Others",
+    price: 7500,
+    rating: 4.8,
+    reviews: 150,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 26,
+    name: "BSN Amino",
+    category: "Others",
+    price: 5000,
+    rating: 4.6,
+    reviews: 110,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 27,
+    name: "GAT Testrol",
+    category: "Others",
+    price: 4500,
+    rating: 4.5,
+    reviews: 70,
+    image: "/placeholder.svg",
+  },
+  {
+    id: 28,
+    name: "Dexter L-Carnitine",
+    category: "Others",
+    price: 7000,
+    rating: 4.7,
+    reviews: 85,
+    image: "/placeholder.svg",
   },
 ]
 
 export default function ShopPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-  const categories = ["Supplements", "Gym Gear", "Perfume"]
+  const categories = ["Pre Workouts", "Creatine", "Proteins", "Mass gainers", "Others"]
   const filteredProducts = selectedCategory ? allProducts.filter((p) => p.category === selectedCategory) : allProducts
 
   return (
     <PageLayout
       title="Shop"
-      description="Browse our complete collection of supplements, gym gear, and premium fragrances"
+      description="Browse our premium selection of supplements and nutrition"
     >
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-green-800 text-center font-extrabold text-5xl md:text-6xl lg:text-7xl text-foreground tracking-tight drop-shadow-lg">
-            Stay Tuned
-          </div>
+
           {/* Filter Section */}
-          {/* <div className="mb-8 flex flex-wrap gap-3">
+          <div className="mb-8 flex flex-wrap gap-3">
             <Button
               variant={selectedCategory === null ? "default" : "outline"}
               onClick={() => setSelectedCategory(null)}
@@ -153,12 +304,12 @@ export default function ShopPage() {
                 {category}
               </Button>
             ))}
-          </div> */}
+          </div>
 
           {/* Products Grid */}
-          {/* <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {filteredProducts.map((product) => (
-              <Link key={product.id} href={`/shop/${product.id}`}>
+              <Link key={product.id} href={`#`}>
                 <Card className="overflow-hidden hover:shadow-lg transition cursor-pointer h-full">
                   <div className="relative h-48 bg-muted overflow-hidden">
                     <img
@@ -176,7 +327,7 @@ export default function ShopPage() {
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-primary text-primary" : "text-muted"}`}
+                            className={`w-3 h-3 md:w-4 md:h-4 ${i < Math.floor(product.rating) ? "fill-primary text-primary" : "text-muted"}`}
                           />
                         ))}
                       </div>
@@ -184,16 +335,17 @@ export default function ShopPage() {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-lg font-bold text-foreground">${product.price}</span>
-                      <Button size="sm" className="bg-primary hover:bg-primary/90">
+                      <span className="text-base font-bold text-foreground">Rs. {product.price.toLocaleString()}</span>
+                      <Button size="sm" className="bg-primary hover:bg-primary/90 h-8 w-8 p-0 md:h-9 md:w-auto md:px-3">
                         <ShoppingCart className="w-4 h-4" />
+                        <span className="hidden md:ml-2 md:inline">Add</span>
                       </Button>
                     </div>
                   </div>
                 </Card>
               </Link>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
     </PageLayout>

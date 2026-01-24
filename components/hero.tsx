@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import React, { useEffect, useRef, useState } from "react"
+import { ChevronDown } from "lucide-react"
+
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement | null>(null)
@@ -10,9 +12,11 @@ export default function Hero() {
   const imagesRef = useRef<HTMLImageElement[]>([])
   const [textOpacity, setTextOpacity] = useState(0)
   const [textTranslate, setTextTranslate] = useState(50)
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const totalFrames = 59
   const [isLoaded, setIsLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
+
 
 
   const pad = (num: number) => num.toString().padStart(3, "0")
@@ -69,7 +73,9 @@ export default function Hero() {
 
           // Text animation
           setTextOpacity(Math.min(scrollProgress * 2, 1))
+
           setTextTranslate(50 - scrollProgress * 50)
+          setShowScrollIndicator(scrollProgress < 0.05)
 
           ticking = false
         })
@@ -205,7 +211,7 @@ export default function Hero() {
 
         {/* Overlay text */}
         <div
-          className="absolute inset-0 flex flex-col justify-center items-start p-6 text-white"
+          className="absolute inset-0 flex flex-col justify-center items-center p-6 text-white text-center"
           style={{
             opacity: textOpacity,
             transform: `translateY(${textTranslate}px)`,
@@ -218,28 +224,34 @@ export default function Hero() {
           </div> */}
           <div className="">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-2">
-              Your{" "}
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Wellness
+                Bunny Fitness
               </span>{" "}
-              Journey
             </h1>
           </div>
-          <p className="mt-2 max-w-lg">
+          <p className="mt-2 text-lg max-w-2xl">
             Premium supplements, personalized meal plans, and expert consulting to help you achieve your wellness goals.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <Link href="/shop">
               <Button size="lg" className="bg-gradient-to-r from-primary to-accent">
                 Shop Now
               </Button>
             </Link>
             <Link href="/consulting">
-              <Button size="lg" variant="outline" className="border-primary/30">
+              <Button size="lg" variant="outline" className="border-primary/30 text-black">
                 Get Consulting
               </Button>
             </Link>
           </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div
+          className={`absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-white transition-opacity duration-500 pointer-events-none ${showScrollIndicator ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <span className="text-sm font-medium mb-2 uppercase tracking-widest text-primary">Scroll Down</span>
+          <ChevronDown className="w-8 h-8 animate-bounce text-primary" />
         </div>
       </div>
     </section>
