@@ -109,7 +109,16 @@ export default function Hero() {
   if (!isLoaded) {
     return (
       <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black text-white">
-        <div className="mb-4 text-2xl font-bold tracking-wider">BUNNYSTORE</div>
+        <div className="mb-6">
+          <img
+            src="/Logo-light.png"
+            alt="BunnyStore Logo"
+            className="w-48 h-auto object-contain"
+          />
+        </div>
+        <div className="mb-6">
+          <p className="text-2xl font-bold tracking-wider">BUNNYSTORE</p>
+        </div>
         <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
           <div
             className="h-full bg-white transition-all duration-100 ease-out"
