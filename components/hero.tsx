@@ -55,26 +55,50 @@ export default function Hero() {
   }, [])
 
 
+  const [loadingProgress, setLoadingProgress] = useState(0)
+
+  // Lock scroll when loading
+  useEffect(() => {
+    if (!isLoaded) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+    return () => {
+      document.body.style.overflow = "unset"
+    }
+  }, [isLoaded])
+
   // load all images before page opens
   useEffect(() => {
     const preloadImages = async () => {
-      const promises = []
+      // Create an array of promises for each image
+      const imagePromises = Array.from({ length: totalFrames }, (_, i) => {
+        return new Promise<void>((resolve) => {
+          const img = new Image()
+          img.src = `/homepagevideo/ezgif-frame-${pad(i + 1)}.jpg`
+          img.onload = () => {
+            setLoadingProgress(prev => {
+              const newProgress = prev + (100 / totalFrames);
+              return Math.min(newProgress, 100);
+            })
+            resolve()
+          }
+          img.onerror = () => {
+            // Resolve even on error to avoid blocking execution
+            setLoadingProgress(prev => {
+              const newProgress = prev + (100 / totalFrames);
+              return Math.min(newProgress, 100);
+            })
+            resolve()
+          }
+        })
+      })
 
-      for (let i = 1; i <= totalFrames; i++) {
-        promises.push(
-          new Promise((resolve) => {
-            const img = new Image()
-            img.src = `/homepagevideo/ezgif-frame-${pad(i)}.jpg`
-            img.onload = resolve
-          })
-        )
-      }
+      // Minimum loader time to prevent flash
+      const minTimePromise = new Promise((resolve) => setTimeout(resolve, 2000))
 
-      // Minimum 2s loader time
-      await Promise.all([
-        Promise.all(promises),
-        new Promise((res) => setTimeout(res, 2000)),
-      ])
+      await Promise.all([Promise.all(imagePromises), minTimePromise])
 
       setIsLoaded(true)
     }
@@ -84,15 +108,18 @@ export default function Hero() {
 
   if (!isLoaded) {
     return (
-      <div className="w-screen h-screen flex items-center justify-center bg-black text-white">
-        Loading experience...
+      <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black text-white">
+        <div className="mb-4 text-2xl font-bold tracking-wider">BUNNYSTORE</div>
+        <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-white transition-all duration-100 ease-out"
+            style={{ width: `${loadingProgress}%` }}
+          />
+        </div>
+        <p className="mt-2 text-sm text-gray-400">{Math.round(loadingProgress)}%</p>
       </div>
     )
   }
-
-  
-
-
 
   return (
     <section
