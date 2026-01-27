@@ -10,7 +10,7 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <Header />
       <Hero />
-      {/* <ProductCategories /> */}
+      <ProductCategories />
       <FeaturedProducts />
       <ConsultingSection />
       <Footer />

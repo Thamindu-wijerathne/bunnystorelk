@@ -3,6 +3,8 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Users, Zap, BookOpen, Calendar, MessageSquare, TrendingUp } from "lucide-react"
 import Link from "next/link"
+import { ConsultingModal } from "@/components/consulting-modal"
+import { FaWhatsapp } from "react-icons/fa"
 
 const services = [
   {
@@ -20,21 +22,21 @@ const services = [
     title: "Real-time Support",
     description: "Chat with your consultant anytime, anywhere",
   },
-  {
-    icon: TrendingUp,
-    title: "Progress Tracking",
-    description: "Monitor your wellness journey with detailed analytics",
-  },
+  // {
+  //   icon: TrendingUp,
+  //   title: "Progress Tracking",
+  //   description: "Monitor your wellness journey with detailed analytics",
+  // },
   {
     icon: Calendar,
     title: "Flexible Scheduling",
     description: "Book sessions at times that work for you",
   },
-  {
-    icon: MessageSquare,
-    title: "Community Support",
-    description: "Connect with other wellness enthusiasts",
-  },
+  // {
+  //   icon: MessageSquare,
+  //   title: "Community Support",
+  //   description: "Connect with other wellness enthusiasts",
+  // },
 ]
 
 const packages = [
@@ -81,6 +83,24 @@ export default function ConsultingPage() {
       title="Wellness Consulting"
       description="Get personalized guidance from certified wellness professionals"
     >
+
+      {/* CTA Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Ready to Transform?</h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            Start your wellness journey today with personalized guidance from our expert consultants.
+          </p>
+          <ConsultingModal trigger={
+            <Button size="lg" className="bg-primary hover:bg-primary/90">
+              <FaWhatsapp className="mr-2 h-5 w-5" />
+              Book Your First Consultation
+            </Button>
+          } />
+
+        </div>
+      </section>
+
       {/* Services Grid */}
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,7 +109,7 @@ export default function ConsultingPage() {
             <p className="text-muted-foreground text-lg">Everything you need to succeed</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => {
               const Icon = service.icon
               return (
@@ -154,19 +174,6 @@ export default function ConsultingPage() {
             Stay Tuned
           </div>
 
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Ready to Transform?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Start your wellness journey today with personalized guidance from our expert consultants.
-          </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90">
-            Book Your First Consultation
-          </Button>
         </div>
       </section>
     </PageLayout>

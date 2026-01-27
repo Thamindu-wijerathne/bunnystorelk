@@ -11,22 +11,22 @@ const categories = [
     color: "bg-primary/10 text-primary",
     href: "/shop?category=supplements",
   },
-  {
-    id: "gym-gear",
-    name: "Gym Gear",
-    description: "Equipment & accessories",
-    icon: Dumbbell,
-    color: "bg-secondary/10 text-secondary",
-    href: "/shop?category=gym-gear",
-  },
-  {
-    id: "perfume",
-    name: "Perfume & Care",
-    description: "Premium fragrances & grooming",
-    icon: Sparkles,
-    color: "bg-accent/10 text-accent",
-    href: "/shop?category=perfume",
-  },
+  // {
+  //   id: "gym-gear",
+  //   name: "Gym Gear",
+  //   description: "Equipment & accessories",
+  //   icon: Dumbbell,
+  //   color: "bg-secondary/10 text-secondary",
+  //   href: "/shop?category=gym-gear",
+  // },
+  // {
+  //   id: "perfume",
+  //   name: "Perfume & Care",
+  //   description: "Premium fragrances & grooming",
+  //   icon: Sparkles,
+  //   color: "bg-accent/10 text-accent",
+  //   href: "/shop?category=perfume",
+  // },
   {
     id: "nutrition",
     name: "Nutrition",
@@ -46,12 +46,12 @@ export default function ProductCategories() {
           <p className="text-muted-foreground text-lg">Everything you need for your wellness journey</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           {categories.map((category) => {
             const Icon = category.icon
             return (
               <Link key={category.id} href={category.href}>
-                <Card className="p-6 hover:shadow-lg transition cursor-pointer h-full">
+                <Card className="p-6 hover:shadow-lg transition cursor-pointer h-full items-center">
                   <div className={`w-12 h-12 rounded-lg ${category.color} flex items-center justify-center mb-4`}>
                     <Icon className="w-6 h-6" />
                   </div>

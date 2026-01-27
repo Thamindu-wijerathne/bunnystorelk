@@ -127,7 +127,7 @@ export default function Header() {
                 </Button>
               </Link>
             ))}
-            {!user && (
+            {/* {!user && (
               <div className="px-2 py-2 space-y-2 border-t border-border mt-2 pt-2">
                 <Link href="/login" className="block">
                   <Button variant="outline" className="w-full bg-transparent hover:bg-primary/10">
@@ -140,7 +140,7 @@ export default function Header() {
                   </Button>
                 </Link>
               </div>
-            )}
+            )} */}
           </nav>
         )}
       </div>
