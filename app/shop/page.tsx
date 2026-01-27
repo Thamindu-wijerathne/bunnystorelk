@@ -147,7 +147,7 @@ const allProducts = [
     price: 23000,
     rating: 4.8,
     reviews: 180,
-    image: "/placeholder.svg",
+    image: "/products/Ultimate whey.jpg",
   },
   {
     id: 16,
@@ -156,7 +156,7 @@ const allProducts = [
     price: 22000,
     rating: 4.6,
     reviews: 120,
-    image: "/placeholder.svg",
+    image: "/products/Dennis omega 3.webp",
   },
   {
     id: 17,
@@ -165,7 +165,7 @@ const allProducts = [
     price: 21000,
     rating: 4.5,
     reviews: 90,
-    image: "/placeholder.svg",
+    image: "/products/Gibbon whey.jpg",
   },
   {
     id: 18,
@@ -174,7 +174,7 @@ const allProducts = [
     price: 21500,
     rating: 4.7,
     reviews: 110,
-    image: "/placeholder.svg",
+    image: "/products/Applied multivitamin.webp",
   },
   {
     id: 19,
@@ -183,7 +183,7 @@ const allProducts = [
     price: 21500,
     rating: 4.6,
     reviews: 100,
-    image: "/placeholder.svg",
+    image: "/products/Pro science mass.webp",
   },
   {
     id: 20,
@@ -192,7 +192,7 @@ const allProducts = [
     price: 23000,
     rating: 4.9,
     reviews: 250,
-    image: "/placeholder.svg",
+    image: "/products/Nitro Tech.jpg",
   },
 
   // Mass Gainers
@@ -203,7 +203,7 @@ const allProducts = [
     price: 21500,
     rating: 4.7,
     reviews: 140,
-    image: "/placeholder.svg",
+    image: "/products/Pro science mass.webp",
   },
 
   // Others
@@ -214,7 +214,7 @@ const allProducts = [
     price: 4500,
     rating: 4.6,
     reviews: 80,
-    image: "/placeholder.svg",
+    image: "/products/Applied multivitamin.webp",
   },
   {
     id: 23,
@@ -232,7 +232,7 @@ const allProducts = [
     price: 5000,
     rating: 4.7,
     reviews: 95,
-    image: "/placeholder.svg",
+    image: "/products/Dennis omega 3.webp",
   },
   {
     id: 25,
@@ -241,7 +241,7 @@ const allProducts = [
     price: 7500,
     rating: 4.8,
     reviews: 150,
-    image: "/placeholder.svg",
+    image: "/products/Xtend bcaa.jpg",
   },
   {
     id: 26,
@@ -250,7 +250,7 @@ const allProducts = [
     price: 5000,
     rating: 4.6,
     reviews: 110,
-    image: "/placeholder.svg",
+    image: "/products/Bsn amino.jpg",
   },
   {
     id: 27,
@@ -259,7 +259,7 @@ const allProducts = [
     price: 4500,
     rating: 4.5,
     reviews: 70,
-    image: "/placeholder.svg",
+    image: "/products/Gat testrol.jpg",
   },
   {
     id: 28,
@@ -268,7 +268,7 @@ const allProducts = [
     price: 7000,
     rating: 4.7,
     reviews: 85,
-    image: "/placeholder.svg",
+    image: "/products/Dexter l carnitine.webp",
   },
 ]
 
