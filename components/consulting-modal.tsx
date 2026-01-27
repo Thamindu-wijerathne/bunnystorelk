@@ -117,7 +117,7 @@ export function ConsultingModal({ trigger }: { trigger?: React.ReactNode }) {
                                     <FormItem>
                                         <FormLabel>Weight (kg)</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="70" {...field} />
+                                            <Input type="number" placeholder="70" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -130,7 +130,7 @@ export function ConsultingModal({ trigger }: { trigger?: React.ReactNode }) {
                                     <FormItem>
                                         <FormLabel>Height (cm)</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="175" {...field} />
+                                            <Input type="number" placeholder="175" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
