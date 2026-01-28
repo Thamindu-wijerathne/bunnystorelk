@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import React, { useEffect, useRef, useState } from "react"
 import { ChevronDown } from "lucide-react"
+import WhatsAppButton from "@/components/whatsapp-button"
 
 
 export default function Hero() {
@@ -239,7 +240,7 @@ export default function Hero() {
               </Button>
             </Link>
             <Link href="/consulting">
-              <Button size="lg" variant="outline" className="border-primary/30 text-black">
+              <Button size="lg" variant="outline" className="border-primary/30 text-black bg-gradient-to-r from-muted-foreground to-foreground">
                 Get Consulting
               </Button>
             </Link>
@@ -254,6 +255,7 @@ export default function Hero() {
           <ChevronDown className="w-8 h-8 animate-bounce text-primary" />
         </div> */}
       </div>
+      <WhatsAppButton />
     </section>
   )
 }
