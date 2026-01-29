@@ -14,7 +14,7 @@ export default function Hero() {
   const [textOpacity, setTextOpacity] = useState(0)
   const [textTranslate, setTextTranslate] = useState(50)
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
-  const totalFrames = 58
+  const totalFrames = 59
   const [isLoaded, setIsLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
 
@@ -133,7 +133,7 @@ export default function Hero() {
       const imagePromises = Array.from({ length: totalFrames }, (_, i) => {
         return new Promise<void>((resolve) => {
           const img = new Image()
-          img.src = `/heropagevideowebp/landscape vi_${pad(i)}.webp`
+          img.src = `/homepagevideo/ezgif-frame-${pad(i + 1)}.jpg`
           img.onload = () => {
             imagesRef.current[i] = img
             setLoadingProgress(prev => {
