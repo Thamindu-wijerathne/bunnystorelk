@@ -37,13 +37,15 @@ export function ProductInfoModal({ product, trigger }: ProductInfoModalProps) {
     const incrementQuantity = () => setQuantity((prev) => prev + 1)
     const decrementQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
 
+    const totalprice = product.price * quantity
+
     const handleBuyOnWhatsApp = () => {
         const phoneNumber = "94765286798"
         const total = product.price * quantity
         const message = `*New Order Inquiry*
             Product: ${product.name}
             Category: ${product.category}
-            Price: Rs. ${product.price.toLocaleString()}
+            Price: Rs. ${totalprice}
             Quantity: ${quantity}
             Total: Rs. ${total.toLocaleString()}
             
@@ -62,7 +64,7 @@ export function ProductInfoModal({ product, trigger }: ProductInfoModalProps) {
             <DialogContent className="sm:max-w-[800px] p-0 overflow-hidden">
                 <div className="grid md:grid-cols-2 gap-0">
                     {/* Product Image */}
-                    <div className="bg-muted h-64 md:h-full relative flex items-center justify-center p-6">
+                    <div className="bg-white h-64 md:h-full relative flex items-center justify-center p-6">
                         <img
                             src={product.image || "/placeholder.svg"}
                             alt={product.name}
@@ -93,7 +95,7 @@ export function ProductInfoModal({ product, trigger }: ProductInfoModalProps) {
                         </div>
 
                         <div className="text-3xl font-bold text-foreground mb-6">
-                            Rs. {product.price.toLocaleString()}
+                            Rs. {totalprice}
                         </div>
 
                         {product.description && (
