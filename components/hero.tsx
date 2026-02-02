@@ -14,7 +14,7 @@ export default function Hero() {
   const [textOpacity, setTextOpacity] = useState(0)
   const [textTranslate, setTextTranslate] = useState(50)
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
-  const totalFrames = 59
+  const totalFrames = 89
   const [isLoaded, setIsLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
 
