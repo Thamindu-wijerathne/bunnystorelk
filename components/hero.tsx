@@ -133,7 +133,7 @@ export default function Hero() {
       const imagePromises = Array.from({ length: totalFrames }, (_, i) => {
         return new Promise<void>((resolve) => {
           const img = new Image()
-          img.src = `/homepagevideo/ezgif-frame-${pad(i + 1)}.jpg`
+          img.src = `/homepagevideotest2/ezgif-frame-${pad(i + 1)}.jpg`
           img.onload = () => {
             imagesRef.current[i] = img
             setLoadingProgress(prev => {
