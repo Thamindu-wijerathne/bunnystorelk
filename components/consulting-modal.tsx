@@ -50,11 +50,13 @@ export function ConsultingModal({ trigger }: { trigger?: React.ReactNode }) {
             phone: "",
             weight: "",
             height: "",
+            service: "Online Coaching",
             details: "",
         },
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
+        alert("hellow")
         const phoneNumber = "94765286798"
         const message = `*New Consultation Request*
             Name: ${values.name}
@@ -63,7 +65,7 @@ export function ConsultingModal({ trigger }: { trigger?: React.ReactNode }) {
             Height: ${values.height}
             Service: ${values.service}
             Details: ${values.details || "N/A"}`
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+        const whatsappUrl = `https://wa.me/${phoneNumber}`
         window.open(whatsappUrl, "_blank")
         setOpen(false)
         form.reset()
@@ -165,7 +167,7 @@ export function ConsultingModal({ trigger }: { trigger?: React.ReactNode }) {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Service Interest</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue={"Online Coaching"}>
+                                        <Select onValueChange={field.onChange} value={field.value}>
                                             <FormControl>
                                                 <SelectTrigger>
                                                     <SelectValue placeholder="Select a service" />

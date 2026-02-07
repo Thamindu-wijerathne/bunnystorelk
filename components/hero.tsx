@@ -6,110 +6,147 @@ import React, { useEffect, useRef, useState } from "react"
 import { ChevronDown } from "lucide-react"
 import WhatsAppButton from "@/components/whatsapp-button"
 
-
 export default function Hero() {
-  const containerRef = useRef<HTMLElement | null>(null)
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const imagesRef = useRef<HTMLImageElement[]>([])
-  const [textOpacity, setTextOpacity] = useState(0)
-  const [textTranslate, setTextTranslate] = useState(50)
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true)
-  const totalFrames = 59
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [loadingProgress, setLoadingProgress] = useState(0)
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const targetFrameRef = useRef<number>(0);
+  const currentFrameRef = useRef<number>(0);
+  const rafRef = useRef<number | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [textOpacity, setTextOpacity] = useState(0);
+  const [textTranslate, setTextTranslate] = useState(50);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
+  const totalFrames = 89;
 
-
-  const pad = (num: number) => num.toString().padStart(3, "0")
-
-  // Function to draw a specific frame to the canvas
-  const renderFrame = (index: number) => {
-    const canvas = canvasRef.current
-    const context = canvas?.getContext("2d")
-    const img = imagesRef.current[index]
-
-    if (!canvas || !context || !img) return
-
-    // "object-cover" logic for canvas
-    const w = canvas.width
-    const h = canvas.height
-    const imgW = img.width
-    const imgH = img.height
-
-    const scale = Math.max(w / imgW, h / imgH)
-    const x = (w - imgW * scale) / 2
-    const y = (h - imgH * scale) / 2
-
-    context.clearRect(0, 0, w, h)
-    context.drawImage(img, x, y, imgW * scale, imgH * scale)
-  }
-
-  // Handle Scroll and Animation
+  // Preload Images
   useEffect(() => {
-    let ticking = false
+    let loadedCount = 0;
+    const images: HTMLImageElement[] = [];
 
-    const handleScroll = () => {
-      if (!containerRef.current) return
+    const preloadImages = () => {
+      for (let i = 1; i <= totalFrames; i++) {
+        const img = new Image();
+        const paddedNum = i.toString().padStart(3, "0");
+        img.src = `/homepagevideo/ezgif-frame-${paddedNum}.jpg`;
+        
+        img.onload = () => {
+          loadedCount++;
+          setLoadingProgress(Math.floor((loadedCount / totalFrames) * 100));
+          if (loadedCount === totalFrames) {
+            setIsLoaded(true);
+          }
+        };
 
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const section = containerRef.current!
-          const scrollTop = window.scrollY - section.offsetTop
-          const scrollHeight = section.offsetHeight - window.innerHeight
+        img.onerror = () => {
+          loadedCount++;
+          console.error(`Failed to load frame ${paddedNum}`);
+          if (loadedCount === totalFrames) {
+            setIsLoaded(true);
+          }
+        };
 
-          const scrollProgress = Math.min(
-            Math.max(scrollTop / scrollHeight, 0),
-            1
-          )
-
-          // Calculate current frame index (0 to totalFrames-1)
-          // We map 1..totalFrames to 0..totalFrames-1 for array access
-          const frameIndex = Math.min(
-            Math.floor(scrollProgress * (totalFrames - 1)),
-            totalFrames - 1
-          )
-
-          // Draw the image directly
-          renderFrame(frameIndex)
-
-          // Text animation
-          setTextOpacity(Math.min(scrollProgress * 2, 1))
-
-          setTextTranslate(50 - scrollProgress * 50)
-          setShowScrollIndicator(scrollProgress < 0.05)
-
-          ticking = false
-        })
-
-        ticking = true
+        images[i - 1] = img;
       }
-    }
+      imagesRef.current = images;
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [isLoaded]) // Re-bind when loaded so renderFrame works with populated images
+    preloadImages();
+    
+    // Safety timeout
+    const timeout = setTimeout(() => {
+      if (!isLoaded && loadedCount > 10) { 
+        setIsLoaded(true);
+      }
+    }, 10000);
 
+    return () => clearTimeout(timeout);
+  }, []);
 
-  // Handle Resize
+  // Animation Loop
   useEffect(() => {
+    if (!isLoaded) return;
+
+    const render = () => {
+      const canvas = canvasRef.current;
+      const context = canvas?.getContext("2d");
+      if (!canvas || !context) {
+        rafRef.current = requestAnimationFrame(render);
+        return;
+      }
+
+      // Interpolate frame index for smoothness
+      const diff = targetFrameRef.current - currentFrameRef.current;
+      if (Math.abs(diff) > 0.001) {
+        currentFrameRef.current += diff * 0.15; // Smooth damping
+      }
+
+      const frameIndex = Math.min(
+        Math.max(Math.round(currentFrameRef.current), 0),
+        totalFrames - 1
+      );
+
+      const img = imagesRef.current[frameIndex];
+
+      if (img && img.complete) {
+        // Handle aspect ratio (cover)
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const imgWidth = img.width;
+        const imgHeight = img.height;
+
+        const ratio = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
+        const newWidth = imgWidth * ratio;
+        const newHeight = imgHeight * ratio;
+        const x = (canvasWidth - newWidth) / 2;
+        const y = (canvasHeight - newHeight) / 2;
+
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        context.drawImage(img, x, y, newWidth, newHeight);
+      }
+
+      rafRef.current = requestAnimationFrame(render);
+    };
+
     const handleResize = () => {
       if (canvasRef.current) {
-        canvasRef.current.width = window.innerWidth
-        canvasRef.current.height = window.innerHeight
-        // Re-render current scroll position or default to 0
-        // For simplicity, we can let the scroll event (which often fires on resize) handle it, 
-        // or force a re-render of frame 0 if at top. 
-        // A simple trick: trigger a scroll handler manually or just redraw 0 if at top
-        if (window.scrollY === 0) renderFrame(0)
+        canvasRef.current.width = window.innerWidth;
+        canvasRef.current.height = window.innerHeight;
       }
-    }
+    };
 
-    window.addEventListener('resize', handleResize)
-    handleResize() // Initial sizing
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    return () => window.removeEventListener('resize', handleResize)
-  }, [isLoaded])
+      const rect = section.getBoundingClientRect();
+      const viewportH = window.innerHeight;
+      const total = rect.height - viewportH;
+      const scrolled = Math.max(0, Math.min(-rect.top, total));
+      const progress = scrolled / total;
 
+      targetFrameRef.current = progress * (totalFrames - 1);
+
+      // UI animations
+      setTextOpacity(Math.min(progress * 2.5, 1));
+      setTextTranslate(50 - progress * 100);
+      setShowScrollIndicator(progress < 0.05);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    rafRef.current = requestAnimationFrame(render);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [isLoaded]);
 
   // Lock scroll when loading
   useEffect(() => {
@@ -123,106 +160,53 @@ export default function Hero() {
     }
   }, [isLoaded])
 
-  // load all images before page opens
-  useEffect(() => {
-    const preloadImages = async () => {
-      // Initialize array
-      imagesRef.current = new Array(totalFrames)
-
-      // Create an array of promises for each image
-      const imagePromises = Array.from({ length: totalFrames }, (_, i) => {
-        return new Promise<void>((resolve) => {
-          const img = new Image()
-          img.src = `/homepagevideo/ezgif-frame-${pad(i + 1)}.jpg`
-          img.onload = () => {
-            imagesRef.current[i] = img
-            setLoadingProgress(prev => {
-              const newProgress = prev + (100 / totalFrames);
-              return Math.min(newProgress, 100);
-            })
-            resolve()
-          }
-          img.onerror = () => {
-            // Resolve even on error
-            setLoadingProgress(prev => {
-              const newProgress = prev + (100 / totalFrames);
-              return Math.min(newProgress, 100);
-            })
-            resolve()
-          }
-        })
-      })
-
-      // Minimum loader time to prevent flash
-      const minTimePromise = new Promise((resolve) => setTimeout(resolve, 2000))
-
-      await Promise.all([Promise.all(imagePromises), minTimePromise])
-
-      setIsLoaded(true)
-
-      // Initial render after load
-      setTimeout(() => {
-        if (canvasRef.current) {
-          canvasRef.current.width = window.innerWidth
-          canvasRef.current.height = window.innerHeight
-          renderFrame(0)
-        }
-      }, 0)
-    }
-
-    preloadImages()
-  }, [])
-
-  if (!isLoaded) {
-    return (
-      <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black text-white">
-        <div className="mb-6">
-          <img
-            src="/Logo-light.png"
-            alt="BunnyStore Logo"
-            className="w-48 h-auto object-contain"
-          />
-        </div>
-        <div className="mb-6">
-          <p className="text-2xl font-bold tracking-wider">BUNNYSTORE</p>
-        </div>
-        <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-white transition-all duration-100 ease-out"
-            style={{ width: `${loadingProgress}%` }}
-          />
-        </div>
-        <p className="mt-2 text-sm text-gray-400">{Math.round(loadingProgress)}%</p>
-      </div>
-    )
-  }
-
   return (
-    <section
-      ref={containerRef}
-      className="relative w-full"
-      style={{ height: `${totalFrames * 50}px` }}
-    >
-      {/* Sticky hero image */}
-      <div className="sticky top-0 w-full h-screen overflow-hidden bg-black">
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full block"
-        />
+    <>
+      {/* Loading Overlay */}
+      {!isLoaded && (
+        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black text-white px-4">
+          <div className="text-center animate-in fade-in duration-700">
+            <img
+              src="/Logo-light.png"
+              alt="BunnyStore Logo"
+              className="w-48 h-auto object-contain mb-8 mx-auto"
+            />
+            <p className="text-2xl font-bold tracking-widest mb-6 uppercase">BUNNYSTORE</p>
+            
+            <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden mb-4 mx-auto">
+              <div 
+                className="h-full bg-white transition-all duration-300 ease-out"
+                style={{ width: `${loadingProgress}%` }}
+              />
+            </div>
+            <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+              Loading Experience • {loadingProgress}%
+            </p>
+          </div>
+        </div>
+      )}
 
-        {/* Overlay text */}
-        <div
-          className="absolute inset-0 flex flex-col justify-center items-center p-6 text-white text-center"
-          style={{
-            opacity: textOpacity,
-            transform: `translateY(${textTranslate}px)`,
-          }}
-        >
-          {/* <div className="w-full flex justify-end pb-30">
-            <span className="px-4 py-2 bg-primary/70 rounded-full text-sm font-semibold">
-              Welcome to BunnyStore
-            </span>
-          </div> */}
+      {/* Hero Section */}
+      <section
+        ref={sectionRef}
+        className="relative bg-black"
+        style={{ height: "300vh" }}
+      >
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
+          <canvas
+            ref={canvasRef}
+            className="w-full h-full object-cover"
+          />
+          
+          {/* Overlay Content */}
+          <div 
+            className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none"
+            style={{
+              opacity: textOpacity,
+              transform: `translateY(${textTranslate}px)`,
+              transition: 'transform 0.1s ease-out'
+            }}
+          >
           <div className="">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-2">
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -245,17 +229,18 @@ export default function Hero() {
               </Button>
             </Link>
           </div>
-        </div>
+          </div>
 
-        {/* Scroll Indicator */}
-        {/* <div
-          className={`absolute top-25 left-1/2 -translate-x-1/2 flex flex-col items-center text-white transition-opacity duration-500 pointer-events-none ${showScrollIndicator ? 'opacity-100' : 'opacity-0'}`}
-        >
-          <span className="text-sm font-medium mb-2 uppercase tracking-widest text-primary">Scroll Down</span>
-          <ChevronDown className="w-8 h-8 animate-bounce text-primary" />
-        </div> */}
-      </div>
-      <WhatsAppButton />
-    </section>
+          {/* Scroll Indicator */}
+          {/* {showScrollIndicator && (
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/30 animate-bounce">
+              <p className="text-[10px] uppercase tracking-[0.3em] font-bold mb-3">Scroll to explore</p>
+              <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
+            </div>
+          )} */}
+        </div>
+        <WhatsAppButton />
+      </section>
+    </>
   )
 }
