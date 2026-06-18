@@ -40,7 +40,7 @@ export function ProductInfoModal({ product, trigger }: ProductInfoModalProps) {
     const totalprice = product.price * quantity
 
     const handleBuyOnWhatsApp = () => {
-        const phoneNumber = "94765286798"
+        const phoneNumber = "9470210040"
         const total = product.price * quantity
         const message = `*New Order Inquiry*
             Product: ${product.name}
